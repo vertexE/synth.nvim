@@ -97,7 +97,7 @@ M.colorscheme = function()
 	-- lsp semantics
 	vim.api.nvim_set_hl(0, "@text", { fg = text_200:hex() })
 	vim.api.nvim_set_hl(0, "@variable", { fg = text_200:fade(8):hex() })
-	vim.api.nvim_set_hl(0, "@function", { fg = primary:hex() })
+	vim.api.nvim_set_hl(0, "@function", { link = "Function" })
 	vim.api.nvim_set_hl(0, "@property", { fg = gray_500:darken(8):hex() })
 
 	-- -- lua
