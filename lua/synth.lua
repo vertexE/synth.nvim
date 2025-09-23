@@ -17,7 +17,7 @@ M.colorscheme = function()
 	vim.opt.termguicolors = true
 	vim.opt.background = "dark"
 
-	local primary = Color:from_hex("#ff2975")
+	local primary = Color:from_hex("#00FF9C") -- #ff2975
 	local surface = Color:from_hex("#10141C")
 
 	local text_100 = Color:from_hex("#E0E0E0")
@@ -72,7 +72,7 @@ M.colorscheme = function()
 	vim.api.nvim_set_hl(0, "Folded", { fg = gray_300:darken(5):hex() })
 
 	-- lsp links
-	vim.api.nvim_set_hl(0, "Constant", { fg = text_100:hex() })
+	vim.api.nvim_set_hl(0, "Constant", { fg = steel:lighten(15):hex(), bold = true })
 	vim.api.nvim_set_hl(0, "Identifier", { fg = green:hex() })
 	vim.api.nvim_set_hl(0, "Special", { fg = gray_200:hex() })
 	vim.api.nvim_set_hl(0, "Type", { fg = steel:lighten(11):hex(), italic = true })
