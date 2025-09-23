@@ -72,7 +72,7 @@ M.colorscheme = function()
 	vim.api.nvim_set_hl(0, "Folded", { fg = gray_300:darken(5):hex() })
 
 	-- lsp links
-	vim.api.nvim_set_hl(0, "Constant", { fg = steel:lighten(15):hex(), bold = true })
+	vim.api.nvim_set_hl(0, "Constant", { fg = steel:lighten(15):hex(), italic = true })
 	vim.api.nvim_set_hl(0, "Identifier", { fg = green:hex() })
 	vim.api.nvim_set_hl(0, "Special", { fg = gray_200:hex() })
 	vim.api.nvim_set_hl(0, "Type", { fg = steel:lighten(11):hex(), italic = true })
