@@ -32,6 +32,8 @@ M.colorscheme = function()
 
 	local steel = Color:from_hex("#3A4A5C")
 
+	local brown = Color:from_hex("#D2691E")
+
 	-- colors
 	local red = Color:from_hex("#ff5572")
 	local yellow = Color:from_hex("#ffee55")
@@ -166,7 +168,7 @@ M.colorscheme = function()
 
 	vim.api.nvim_set_hl(0, "AIActionsHeader", { link = "@text" })
 	vim.api.nvim_set_hl(0, "AIActionsInActiveContext", { link = "@comment" })
-	vim.api.nvim_set_hl(0, "AIActionsActiveContext", { fg = orange:hex() })
+	vim.api.nvim_set_hl(0, "AIActionsActiveContext", { fg = red:hex() })
 
 	vim.api.nvim_set_hl(0, "SnacksBackdrop", { bg = surface:hex() })
 
@@ -179,6 +181,9 @@ M.colorscheme = function()
 	vim.api.nvim_set_hl(0, "MiniStatuslineModeVisual", { fg = steel:darken(15):hex(), bg = purple:hex(), bold = true })
 	vim.api.nvim_set_hl(0, "MiniStatuslineModeInsert", { fg = steel:darken(15):hex(), bg = green:hex(), bold = true })
 	vim.api.nvim_set_hl(0, "MiniStatuslineModeCommand", { fg = steel:darken(15):hex(), bg = orange:hex(), bold = true })
+
+	vim.api.nvim_set_hl(0, "NeogitSectionHeader", { fg = purple:hex() })
+	vim.api.nvim_set_hl(0, "NeogitStatusHEAD", { fg = purple:hex() })
 end
 
 return M
