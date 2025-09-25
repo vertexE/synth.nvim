@@ -82,6 +82,10 @@ M.colorscheme = function()
 	vim.api.nvim_set_hl(0, "Keyword", { fg = gray_500:hex(), bold = true })
 	vim.api.nvim_set_hl(0, "Comment", { italic = true, fg = steel:hex() })
 
+	-- lsp special
+	vim.api.nvim_set_hl(0, "LspInlayHint", { italic = true, fg = gray_300:hex(), bg = surface:lighten(2):hex() })
+	vim.api.nvim_set_hl(0, "LspCodeLens", { italic = true, fg = gray_300:hex(), bg = surface:lighten(2):hex() })
+
 	-- lsp warnings
 	vim.api.nvim_set_hl(0, "DiagnosticUnnecessary", { fg = steel:darken():hex() })
 	vim.api.nvim_set_hl(0, "DiagnosticError", { fg = red:hex() })
