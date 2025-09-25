@@ -184,7 +184,7 @@ M.colorscheme = function()
 	)
 	vim.api.nvim_set_hl(0, "MiniStatuslineModeReplace", { fg = steel:darken(15):hex(), bg = red:hex(), bold = true })
 	vim.api.nvim_set_hl(0, "MiniStatuslineModeVisual", { fg = steel:darken(15):hex(), bg = purple:hex(), bold = true })
-	vim.api.nvim_set_hl(0, "MiniStatuslineModeInsert", { fg = steel:darken(15):hex(), bg = green:hex(), bold = true })
+	vim.api.nvim_set_hl(0, "MiniStatuslineModeInsert", { fg = steel:darken(15):hex(), bg = brown:hex(), bold = true })
 	vim.api.nvim_set_hl(0, "MiniStatuslineModeCommand", { fg = steel:darken(15):hex(), bg = orange:hex(), bold = true })
 end
 
