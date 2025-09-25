@@ -158,6 +158,9 @@ M.colorscheme = function()
 	vim.api.nvim_set_hl(0, "NeogitDiffDeleteCursor", { link = "DiffDelete" })
 	vim.api.nvim_set_hl(0, "NeogitDiffAddCursor", { link = "DiffAdd" })
 
+	vim.api.nvim_set_hl(0, "NeogitSectionHeader", { fg = purple:hex() })
+	vim.api.nvim_set_hl(0, "NeogitStatusHEAD", { fg = purple:hex() })
+
 	--  TODO: test
 	--  FIXME: test
 	--  BUG: test
@@ -183,9 +186,6 @@ M.colorscheme = function()
 	vim.api.nvim_set_hl(0, "MiniStatuslineModeVisual", { fg = steel:darken(15):hex(), bg = purple:hex(), bold = true })
 	vim.api.nvim_set_hl(0, "MiniStatuslineModeInsert", { fg = steel:darken(15):hex(), bg = green:hex(), bold = true })
 	vim.api.nvim_set_hl(0, "MiniStatuslineModeCommand", { fg = steel:darken(15):hex(), bg = orange:hex(), bold = true })
-
-	vim.api.nvim_set_hl(0, "NeogitSectionHeader", { fg = purple:hex() })
-	vim.api.nvim_set_hl(0, "NeogitStatusHEAD", { fg = purple:hex() })
 end
 
 return M
