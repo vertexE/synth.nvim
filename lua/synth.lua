@@ -135,6 +135,8 @@ M.colorscheme = function()
 	vim.api.nvim_set_hl(0, "@markup.heading.1.markdown", { fg = orange:hex(), bold = true })
 
 	-- git
+	vim.api.nvim_set_hl(0, "gitcommitSummary", { fg = brown:hex(), italic = true })
+
 	vim.api.nvim_set_hl(0, "Changed", { fg = yellow:darken(15):hex() })
 	vim.api.nvim_set_hl(0, "Removed", { fg = red:saturate(5):hex() })
 	vim.api.nvim_set_hl(0, "Added", { fg = green:saturate(5):hex() })
