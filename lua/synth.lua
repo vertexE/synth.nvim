@@ -83,6 +83,12 @@ M.colorscheme = function()
 	vim.api.nvim_set_hl(0, "Statement", { fg = text_200:hex() })
 	vim.api.nvim_set_hl(0, "Keyword", { fg = gray_500:hex(), bold = true })
 	vim.api.nvim_set_hl(0, "Comment", { italic = true, fg = steel:hex() })
+	vim.api.nvim_set_hl(0, "PmenuSel", { bg = surface:lighten(3):hex() })
+	vim.api.nvim_set_hl(0, "PmenuKind", { italic = true })
+	vim.api.nvim_set_hl(0, "BlinkCmpKindFunction", { italic = true, fg = purple:hex() })
+	vim.api.nvim_set_hl(0, "BlinkCmpKindProperty", { italic = true, fg = orange:hex() })
+	vim.api.nvim_set_hl(0, "BlinkCmpKindVariable", { italic = true, fg = brown:hex() })
+	vim.api.nvim_set_hl(0, "BlinkCmpKindField", { italic = true, fg = red:hex() })
 
 	-- lsp special
 	vim.api.nvim_set_hl(0, "LspInlayHint", { italic = true, fg = gray_300:hex(), bg = surface:lighten(2):hex() })
