@@ -72,6 +72,7 @@ M.colorscheme = function()
 	vim.api.nvim_set_hl(0, "MiniIndentscopeSymbol", { fg = steel:darken(5):hex() })
 	vim.api.nvim_set_hl(0, "WinSeparator", { fg = steel:darken(5):hex() })
 	vim.api.nvim_set_hl(0, "Folded", { fg = gray_300:darken(5):hex() })
+	vim.api.nvim_set_hl(0, "FloatTitle", { fg = red:hex(), italic = true })
 
 	-- lsp links
 	vim.api.nvim_set_hl(0, "Constant", { fg = steel:lighten(15):hex(), italic = true })
