@@ -66,7 +66,7 @@ M.colorscheme = function()
 	vim.api.nvim_set_hl(0, "WinBarNC", { link = "WinBar" })
 	vim.api.nvim_set_hl(0, "Pmenu", { bg = surface:hex(), fg = gray_300:hex() })
 	vim.api.nvim_set_hl(0, "PmenuThumb", {})
-	vim.api.nvim_set_hl(0, "FloatBorder", { fg = steel:hex() })
+	vim.api.nvim_set_hl(0, "FloatBorder", { fg = steel:darken(11):hex() })
 	vim.api.nvim_set_hl(0, "BlinkCmpDocBorder", { fg = steel:hex() })
 	vim.api.nvim_set_hl(0, "BlinkCmpMenuBorder", { fg = steel:hex() })
 	vim.api.nvim_set_hl(0, "MiniIndentscopeSymbol", { fg = steel:darken(5):hex() })
@@ -86,11 +86,6 @@ M.colorscheme = function()
 	vim.api.nvim_set_hl(0, "Comment", { italic = true, fg = steel:hex() })
 	vim.api.nvim_set_hl(0, "PmenuSel", { bg = surface:lighten(3):hex() })
 	vim.api.nvim_set_hl(0, "PmenuKind", { italic = true })
-	vim.api.nvim_set_hl(0, "BlinkCmpKindFunction", { italic = true, fg = purple:hex() })
-	vim.api.nvim_set_hl(0, "BlinkCmpKindMethod", { link = "BlinkCmpKindFunction" })
-	vim.api.nvim_set_hl(0, "BlinkCmpKindProperty", { italic = true, fg = orange:hex() })
-	vim.api.nvim_set_hl(0, "BlinkCmpKindVariable", { italic = true, fg = brown:hex() })
-	vim.api.nvim_set_hl(0, "BlinkCmpKindField", { italic = true, fg = red:hex() })
 
 	-- lsp special
 	vim.api.nvim_set_hl(0, "LspInlayHint", { italic = true, fg = gray_300:hex(), bg = surface:lighten(2):hex() })
@@ -194,6 +189,14 @@ M.colorscheme = function()
 	vim.api.nvim_set_hl(0, "MiniStatuslineModeVisual", { fg = steel:darken(15):hex(), bg = purple:hex(), bold = true })
 	vim.api.nvim_set_hl(0, "MiniStatuslineModeInsert", { fg = steel:darken(15):hex(), bg = brown:hex(), bold = true })
 	vim.api.nvim_set_hl(0, "MiniStatuslineModeCommand", { fg = steel:darken(15):hex(), bg = orange:hex(), bold = true })
+
+	vim.api.nvim_set_hl(0, "MiniCompletionInfoBorderOutdated", { link = "FloatBorder" })
+
+	vim.api.nvim_set_hl(0, "BlinkCmpKindFunction", { italic = true, fg = purple:hex() })
+	vim.api.nvim_set_hl(0, "BlinkCmpKindMethod", { link = "BlinkCmpKindFunction" })
+	vim.api.nvim_set_hl(0, "BlinkCmpKindProperty", { italic = true, fg = orange:hex() })
+	vim.api.nvim_set_hl(0, "BlinkCmpKindVariable", { italic = true, fg = brown:hex() })
+	vim.api.nvim_set_hl(0, "BlinkCmpKindField", { italic = true, fg = red:hex() })
 end
 
 return M
