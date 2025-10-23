@@ -1,3 +1,7 @@
+local clamp = function(_min, v, _max)
+	return math.max(_min, math.min(v, _max))
+end
+
 local hex_to_hsl = function(hex_color)
 	-- Remove the '#' if present
 	hex_color = hex_color:gsub("#", "")
@@ -67,9 +71,9 @@ local hsl_to_hex = function(h, s, l)
 		r, g, b = c, 0, x
 	end
 
-	r = math.floor((r + m) * 255)
-	g = math.floor((g + m) * 255)
-	b = math.floor((b + m) * 255)
+	r = clamp(0, math.floor((r + m) * 255), 255)
+	g = clamp(0, math.floor((g + m) * 255), 255)
+	b = clamp(0, math.floor((b + m) * 255), 255)
 
 	local function toHex(val)
 		return string.format("%02x", val)
