@@ -31,9 +31,17 @@ azure = "#4d7bff",
 cyan = "#00e5ff",
 ````
 
-## Appearance
+## Gallery
 
-<todo>
+<details>
+  <summary>lua</summary>
+  <img width="1512" height="909" alt="image" src="https://github.com/user-attachments/assets/c1782000-3a74-41c3-95cf-5fbc3b350ec4" />
+</details>
+<details>
+  <summary>go</summary>
+  <img width="1512" height="900" alt="image" src="https://github.com/user-attachments/assets/ba9bfa93-ad19-4a96-8aa3-e42eadf105ad" />
+</details>
+
 
 ## Configuration
 
