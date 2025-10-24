@@ -1,10 +1,11 @@
 <p align="center">
   <img width="15%" height="15%" alt="Gemini_Generated_Image_95q2q95q2q95q2q9" src="https://github.com/user-attachments/assets/62acc82b-1651-4a7a-bef3-fc11aa523b73" />
+  <h2 align="center">synth.nvim</h2>
 </p>
 
-# synth.nvim
 
-A retro synthwave theme with a focus on distinct colors and lots of greys.
+A lot of synthwave inspired themes tend to add way too many colors. Instead, this retro synthwave theme focuses on one distinct color with select highlights. Then lots of greys
+to supplement.
 
 ## Palette
 
@@ -31,11 +32,17 @@ azure = "#4d7bff",
 cyan = "#00e5ff",
 ````
 
+## Supported Plugins
+
+For now, very little is supported outside of default hl groups.
+
+- blink.cmp
+
 ## Gallery
 
 <details>
   <summary>lua</summary>
-  <img width="1512" height="909" alt="image" src="https://github.com/user-attachments/assets/c1782000-3a74-41c3-95cf-5fbc3b350ec4" />
+  <img width="1512" height="905" alt="image" src="https://github.com/user-attachments/assets/5d732045-799c-40ed-91cf-5c0aa8ff6b49" />
 </details>
 <details>
   <summary>go</summary>
@@ -47,11 +54,11 @@ cyan = "#00e5ff",
 
 You can currently override the highlight groups or the base colors.
 
-```
---- call setup first, or don't and stick with defaults
+```lua
+--- call setup first to override any defaults, optional step if you like the defaults
 require("synth").setup({
     override_colors = {
-        primary = "#3232f2",
+        primary = "#ff2975",
     },
     override_hl = function(colors)
         return {
