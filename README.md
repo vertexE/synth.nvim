@@ -1,17 +1,58 @@
+<p align="center">
+  <img width="15%" height="15%" alt="Gemini_Generated_Image_95q2q95q2q95q2q9" src="https://github.com/user-attachments/assets/62acc82b-1651-4a7a-bef3-fc11aa523b73" />
+</p>
+
 # synth.nvim
 
-A retro synthwave theme that includes distinct colors without overwhelming the user.
+A retro synthwave theme with a focus on distinct colors and lots of greys.
+
+## Palette
+
+````
+primary = "#00FF9C",
+surface = "#10141C",
+text_100 = "#E0E0E0",
+text_200 = "#CFCFCF",
+text_300 = "#a8a8a8",
+text_400 = "#828282",
+gray_500 = "#5F6978",
+gray_300 = "#6A7B8E",
+gray_200 = "#8B9DAF",
+gray_100 = "#AEC0D1",
+steel = "#3A4A5C",
+red = "#ff5572",
+yellow = "#ffee55",
+blue = "#55b4ff",
+green = "#25D88A",
+orange = "#ff9900",
+purple = "#c779ff",
+brown = "#D2691E",
+azure = "#4d7bff",
+cyan = "#00e5ff",
+````
 
 ## Appearance
 
-<img width="75%" height="75%" alt="Screenshot 2025-09-26 at 11 14 02 AM" src="https://github.com/user-attachments/assets/3f486c29-907b-4966-8855-544f032b6407" />
-
-<img width="75%" height="75%" alt="Screenshot 2025-09-26 at 11 23 06 AM" src="https://github.com/user-attachments/assets/74f68c81-5eae-4e7e-9796-89490d92f6b2" />
-
-<img width="75%" height="75%" alt="Screenshot 2025-09-26 at 11 16 30 AM" src="https://github.com/user-attachments/assets/1e49e60a-b5b1-4b21-b862-cff430e43104" />
-
-<img width="75%" height="75%" alt="Screenshot 2025-09-26 at 11 15 06 AM" src="https://github.com/user-attachments/assets/0860a9c3-b80d-4624-ba01-3b873dcf4547" />
+<todo>
 
 ## Configuration
 
-Nothing for now.
+You can currently override the highlight groups or the base colors.
+
+```
+--- call setup first, or don't and stick with defaults
+require("synth").setup({
+    override_colors = {
+        primary = "#3232f2",
+    },
+    override_hl = function(colors)
+        return {
+            ["Keyword"] = { bold = false, italic = true }, -- for italic keywords instead of bold
+            ["StatusLineSeparator"] = { fg = colors.surface:lighten():hex() }, -- you can use everything in synth.color to modify hsl of colors
+            ["StatusLineSeparatorContent"] = { fg = colors.steel:hex(), bg = colors.surface:lighten():hex() },
+        }
+    end,
+})
+
+vim.cmd.colorscheme("synth")
+```
