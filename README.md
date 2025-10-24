@@ -43,11 +43,11 @@ For now, very little is supported outside of default hl groups.
 
 <details>
   <summary>lua</summary>
-  <img width="1512" height="905" alt="image" src="https://github.com/user-attachments/assets/5d732045-799c-40ed-91cf-5c0aa8ff6b49" />
+  <img width="1512" height="906" alt="image" src="https://github.com/user-attachments/assets/6e2100dd-471c-46ba-a4a5-b9ccd8ff84a5" />
 </details>
 <details>
-  <summary>go</summary>
-  <img width="1512" height="900" alt="image" src="https://github.com/user-attachments/assets/ba9bfa93-ad19-4a96-8aa3-e42eadf105ad" />
+  <summary>react/ts</summary>
+  <img width="1512" height="904" alt="image" src="https://github.com/user-attachments/assets/87c9622a-9d33-45f4-9338-36a3027203cd" />
 </details>
 
 
