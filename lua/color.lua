@@ -82,7 +82,7 @@ local hsl_to_hex = function(h, s, l)
 	return "#" .. toHex(r) .. toHex(g) .. toHex(b)
 end
 
---- @class Color
+--- @class synth.Color
 --- @field h integer hue
 --- @field s integer saturation
 --- @field l integer lightness
@@ -90,7 +90,7 @@ local Color = { h = 0, s = 0, l = 0 }
 Color.__index = Color
 
 ---@param hex string
----@return Color
+---@return synth.Color
 function Color:from_hex(hex)
 	local h, s, l = hex_to_hsl(hex or "#000000")
 	return setmetatable({
@@ -103,7 +103,7 @@ end
 ---@param h integer
 ---@param s integer
 ---@param l integer
----@return Color
+---@return synth.Color
 function Color:from_hsl(h, s, l)
 	return setmetatable({
 		h = h,
@@ -139,7 +139,7 @@ function Color:rotate(step)
 	return Color:from_hsl(h, self.s, self.l)
 end
 
---- @return Color
+--- @return synth.Color
 function Color:negative()
 	local h = (self.h + 180) % 360
 	local l = 100 - self.l
@@ -147,7 +147,7 @@ function Color:negative()
 	return Color:from_hsl(h, self.s, l)
 end
 
---- @return Color
+--- @return synth.Color
 function Color:complement()
 	local h = (self.h + 180) % 360
 	return Color:from_hsl(h, self.s, self.l)
