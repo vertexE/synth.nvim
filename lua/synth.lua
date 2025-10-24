@@ -36,7 +36,7 @@ local config = {
 	override_colors = {},
 }
 
----@param c synth.PluginOpts
+---@param c ?synth.PluginOpts
 M.setup = function(c)
 	config = vim.tbl_extend("force", config, c or {})
 end
