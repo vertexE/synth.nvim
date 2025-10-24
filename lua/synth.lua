@@ -2,14 +2,18 @@ local M = {}
 
 local Color = require("color")
 
-local config = {
-	transparent = false,
-}
+--- @class synth.PluginOpts
+--- @field overrides ?table<string,vim.api.keyset.highlight> merges with default highlight settings, or add missing ones
 
+--- @type synth.PluginOpts
+local config = {}
+
+---@param c synth.PluginOpts
 M.setup = function(c)
-	c = c or {}
-	if c.transparent ~= nil then
-		config.transparent = c.transparent
+	c = c or config
+
+	if c.overrides then
+		config.overrides = c.overrides
 	end
 end
 
@@ -17,7 +21,7 @@ M.colorscheme = function()
 	vim.opt.termguicolors = true
 	vim.opt.background = "dark"
 
-	local primary = Color:from_hex("#00FF9C") -- #ff2975
+	local primary = Color:from_hex("#00FF9C")
 	local surface = Color:from_hex("#10141C")
 
 	local text_100 = Color:from_hex("#E0E0E0")
@@ -32,8 +36,6 @@ M.colorscheme = function()
 
 	local steel = Color:from_hex("#3A4A5C")
 
-	local brown = Color:from_hex("#D2691E")
-
 	-- colors
 	local red = Color:from_hex("#ff5572")
 	local yellow = Color:from_hex("#ffee55")
@@ -41,163 +43,166 @@ M.colorscheme = function()
 	local green = Color:from_hex("#25D88A")
 	local orange = Color:from_hex("#ff9900")
 	local purple = Color:from_hex("#c779ff")
-
+	local brown = Color:from_hex("#D2691E")
 	local azure = Color:from_hex("#4d7bff")
 	local cyan = Color:from_hex("#00e5ff")
 
-	vim.api.nvim_set_hl(0, "MiniIconsGrey", { fg = steel:hex() })
-	vim.api.nvim_set_hl(0, "MiniIconsAzure", { fg = azure:hex() })
-	vim.api.nvim_set_hl(0, "MiniIconsPurple", { fg = purple:hex() })
-	vim.api.nvim_set_hl(0, "MiniIconsCyan", { fg = cyan:hex() })
-	vim.api.nvim_set_hl(0, "MiniIconsRed", { fg = red:hex() })
-	vim.api.nvim_set_hl(0, "MiniIconsGreen", { fg = green:hex() })
-	vim.api.nvim_set_hl(0, "MiniIconsOrange", { fg = orange:hex() })
-	vim.api.nvim_set_hl(0, "MiniIconsYellow", { fg = yellow:hex() })
-	vim.api.nvim_set_hl(0, "MiniIconsBlue", { fg = blue:hex() })
+	--- @type table<string,vim.api.keyset.highlight>
+	local defaults = {
+		-- mini icons
+		["MiniIconsGrey"] = { fg = steel:hex() },
+		["MiniIconsAzure"] = { fg = azure:hex() },
+		["MiniIconsPurple"] = { fg = purple:hex() },
+		["MiniIconsCyan"] = { fg = cyan:hex() },
+		["MiniIconsRed"] = { fg = red:hex() },
+		["MiniIconsGreen"] = { fg = green:hex() },
+		["MiniIconsOrange"] = { fg = orange:hex() },
+		["MiniIconsYellow"] = { fg = yellow:hex() },
+		["MiniIconsBlue"] = { fg = blue:hex() },
 
-	-- nvim
-	vim.api.nvim_set_hl(0, "Normal", { bg = surface:hex(), fg = text_200:hex() })
-	vim.api.nvim_set_hl(0, "NormalFloat", { bg = surface:hex(), fg = text_200:hex() })
-	vim.api.nvim_set_hl(0, "Visual", { bg = surface:lighten(10):hex() })
-	vim.api.nvim_set_hl(0, "HighlightYank", { bg = gray_300:hex() })
-	vim.api.nvim_set_hl(0, "StatusLine", { bg = surface:hex() })
-	vim.api.nvim_set_hl(0, "StatusLineNC", { bg = surface:hex() })
-	vim.api.nvim_set_hl(0, "WinBar", { bg = surface:lighten(1):hex() })
-	vim.api.nvim_set_hl(0, "WinBarNC", { link = "WinBar" })
-	vim.api.nvim_set_hl(0, "Pmenu", { bg = surface:hex(), fg = gray_300:hex() })
-	vim.api.nvim_set_hl(0, "PmenuThumb", {})
-	vim.api.nvim_set_hl(0, "FloatBorder", { fg = steel:darken(11):hex() })
-	vim.api.nvim_set_hl(0, "BlinkCmpDocBorder", { fg = steel:hex() })
-	vim.api.nvim_set_hl(0, "BlinkCmpMenuBorder", { fg = steel:hex() })
-	vim.api.nvim_set_hl(0, "MiniIndentscopeSymbol", { fg = steel:darken(5):hex() })
-	vim.api.nvim_set_hl(0, "WinSeparator", { fg = steel:darken(5):hex() })
-	vim.api.nvim_set_hl(0, "Folded", { fg = gray_300:darken(5):hex() })
-	vim.api.nvim_set_hl(0, "FloatTitle", { fg = red:hex(), italic = true })
+		-- nvim
+		["Normal"] = { bg = surface:hex(), fg = text_200:hex() },
+		["NormalFloat"] = { bg = surface:hex(), fg = text_200:hex() },
+		["Visual"] = { bg = surface:lighten(10):hex() },
+		["HighlightYank"] = { bg = gray_300:hex() },
+		["StatusLine"] = { bg = surface:hex() },
+		["StatusLineNC"] = { bg = surface:hex() },
+		["WinBar"] = { bg = surface:lighten(1):hex() },
+		["WinBarNC"] = { link = "WinBar" },
+		["Pmenu"] = { bg = surface:hex(), fg = gray_300:hex() },
+		["PmenuThumb"] = {},
+		["FloatBorder"] = { fg = steel:darken(11):hex() },
+		["WinSeparator"] = { fg = steel:darken(5):hex() },
+		["Folded"] = { fg = gray_300:darken(5):hex() },
+		["FloatTitle"] = { fg = red:hex(), italic = true },
 
-	-- lsp links
-	vim.api.nvim_set_hl(0, "Constant", { fg = steel:lighten(15):hex(), italic = true })
-	vim.api.nvim_set_hl(0, "Identifier", { fg = green:hex() })
-	vim.api.nvim_set_hl(0, "Special", { fg = gray_200:hex() })
-	vim.api.nvim_set_hl(0, "Type", { fg = steel:lighten(11):hex(), italic = true })
-	vim.api.nvim_set_hl(0, "String", { fg = steel:lighten(15):hex(), italic = true })
-	vim.api.nvim_set_hl(0, "Function", { fg = primary:hex(), italic = true })
-	vim.api.nvim_set_hl(0, "Statement", { fg = text_200:hex() })
-	vim.api.nvim_set_hl(0, "Keyword", { fg = gray_500:hex(), bold = true })
-	vim.api.nvim_set_hl(0, "Comment", { italic = true, fg = steel:hex() })
-	vim.api.nvim_set_hl(0, "PmenuSel", { bg = surface:lighten(3):hex() })
-	vim.api.nvim_set_hl(0, "PmenuKind", { italic = true })
+		-- lsp links
+		["Constant"] = { fg = steel:lighten(15):hex(), italic = true },
+		["Identifier"] = { fg = green:hex() },
+		["Special"] = { fg = gray_200:hex() },
+		["Type"] = { fg = steel:lighten(11):hex(), italic = true },
+		["String"] = { fg = steel:lighten(15):hex(), italic = true },
+		["Function"] = { fg = primary:hex(), italic = true },
+		["Statement"] = { fg = text_200:hex() },
+		["Keyword"] = { fg = gray_500:hex(), bold = true },
+		["Comment"] = { italic = true, fg = steel:hex() },
+		["PmenuSel"] = { bg = surface:lighten(3):hex() },
+		["PmenuKind"] = { italic = true },
 
-	-- lsp special
-	vim.api.nvim_set_hl(0, "LspInlayHint", { italic = true, fg = gray_300:hex(), bg = surface:lighten(2):hex() })
-	vim.api.nvim_set_hl(0, "LspCodeLens", { italic = true, fg = gray_300:hex(), bg = surface:lighten(2):hex() })
+		-- lsp special
+		["LspInlayHint"] = { italic = true, fg = gray_300:hex(), bg = surface:lighten(2):hex() },
+		["LspCodeLens"] = { italic = true, fg = gray_300:hex(), bg = surface:lighten(2):hex() },
 
-	-- lsp warnings
-	vim.api.nvim_set_hl(0, "DiagnosticUnnecessary", { fg = steel:darken():hex() })
-	vim.api.nvim_set_hl(0, "DiagnosticError", { fg = red:hex() })
-	vim.api.nvim_set_hl(0, "DiagnosticHint", { fg = yellow:hex() })
-	vim.api.nvim_set_hl(0, "DiagnosticWarn", { fg = orange:hex() })
-	vim.api.nvim_set_hl(0, "DiagnosticInfo", { fg = brown:hex() })
-	vim.api.nvim_set_hl(0, "DiagnosticUnderlineError", { fg = "", bg = "" })
-	vim.api.nvim_set_hl(0, "DiagnosticUnderlineWarn", { fg = "", bg = "" })
-	vim.api.nvim_set_hl(0, "DiagnosticUnderlineOk", { fg = "", bg = "" })
-	vim.api.nvim_set_hl(0, "DiagnosticUnderlineHint", { fg = "", bg = "" })
-	vim.api.nvim_set_hl(0, "DiagnosticUnderlineInfo", { fg = "", bg = "" })
+		-- lsp warnings
+		["DiagnosticUnnecessary"] = { fg = steel:darken():hex() },
+		["DiagnosticError"] = { fg = red:hex() },
+		["DiagnosticHint"] = { fg = yellow:hex() },
+		["DiagnosticWarn"] = { fg = orange:hex() },
+		["DiagnosticInfo"] = { fg = brown:hex() },
+		["DiagnosticUnderlineError"] = { fg = "", bg = "" },
+		["DiagnosticUnderlineWarn"] = { fg = "", bg = "" },
+		["DiagnosticUnderlineOk"] = { fg = "", bg = "" },
+		["DiagnosticUnderlineHint"] = { fg = "", bg = "" },
+		["DiagnosticUnderlineInfo"] = { fg = "", bg = "" },
 
-	-- lsp semantics
-	vim.api.nvim_set_hl(0, "@text", { fg = text_200:hex() })
-	vim.api.nvim_set_hl(0, "@variable", { fg = text_200:fade(8):hex() })
-	vim.api.nvim_set_hl(0, "@function", { link = "Function" })
-	vim.api.nvim_set_hl(0, "@property", { fg = gray_300:hex() })
+		-- lsp semantics
+		["@text"] = { fg = text_200:hex() },
+		["@variable"] = { fg = text_200:fade(8):hex() },
+		["@function"] = { link = "Function" },
+		["@property"] = { fg = gray_300:hex() },
 
-	-- -- lua
-	vim.api.nvim_set_hl(0, "@lsp.type.method.lua", {})
-	vim.api.nvim_set_hl(0, "@lsp.type.method.lua", { fg = primary:hex() })
-	vim.api.nvim_set_hl(0, "@lsp.type.property.lua", { fg = gray_100:hex() })
+		-- lua
+		["@lsp.type.method.lua"] = { fg = primary:hex() },
+		["@lsp.type.property.lua"] = { fg = gray_100:hex() },
 
-	-- html
-	vim.api.nvim_set_hl(0, "@tag.attribute.html", { fg = steel:hex() })
-	vim.api.nvim_set_hl(0, "@tag.html", { fg = gray_100:hex() })
-	vim.api.nvim_set_hl(0, "htmlTagName", { fg = gray_100:hex() })
+		-- html
+		["@tag.attribute.html"] = { fg = steel:hex() },
+		["@tag.html"] = { fg = gray_100:hex() },
+		["htmlTagName"] = { fg = gray_100:hex() },
 
-	-- tsx
-	vim.api.nvim_set_hl(0, "@tag", { fg = gray_100:hex() })
-	vim.api.nvim_set_hl(0, "@tag.tsx", { fg = gray_100:hex() })
-	vim.api.nvim_set_hl(0, "@tag.builtin.tsx", { fg = gray_100:hex() })
-	vim.api.nvim_set_hl(0, "@tag.attribute.tsx", { fg = steel:hex() })
+		-- tsx
+		["@tag"] = { fg = gray_100:hex() },
+		["@tag.tsx"] = { fg = gray_100:hex() },
+		["@tag.builtin.tsx"] = { fg = gray_100:hex() },
+		["@tag.attribute.tsx"] = { fg = steel:hex() },
 
-	-- ts
+		-- golang
+		["@variable.parameter.go"] = {},
 
-	-- rust
+		["@markup.strong"] = { fg = red:hex(), bold = true },
+		["@markup.italic"] = { fg = green:hex(), italic = true },
+		["@markup.heading.1.markdown"] = { fg = orange:hex(), bold = true },
+		-- git
+		["gitcommitSummary"] = { fg = brown:hex(), italic = true },
 
-	-- golang
-	vim.api.nvim_set_hl(0, "@variable.parameter.go", {})
+		["Changed"] = { fg = yellow:darken(15):fade(55):hex() },
+		["Removed"] = { fg = red:darken(10):fade(44):hex() },
+		["Added"] = { fg = green:fade(55):hex() },
+		["DiffChange"] = { link = "Comment" },
+		["DiffText"] = { fg = orange:hex(), bg = yellow:fade(12):darken(55):hex() },
+		["DiffDelete"] = { fg = red:hex(), bg = red:fade(66):darken(50):hex() },
+		["DiffAdd"] = { bg = green:fade(33):darken(34):hex() },
 
-	-- markdown
-	vim.api.nvim_set_hl(0, "@markup.strong", { fg = red:hex(), bold = true })
-	vim.api.nvim_set_hl(0, "@markup.italic", { fg = green:hex(), italic = true })
-	vim.api.nvim_set_hl(0, "@markup.heading.1.markdown", { fg = orange:hex(), bold = true })
+		["NeogitDiffDelete"] = { link = "DiffDelete" },
+		["NeogitDiffAdd"] = { link = "DiffAdd" },
+		["NeogitDiffDeleteHighlight"] = { link = "DiffDelete" },
+		["NeogitDiffAddHighlight"] = { link = "DiffAdd" },
 
-	-- git
-	vim.api.nvim_set_hl(0, "gitcommitSummary", { fg = brown:hex(), italic = true })
+		["NeogitDiffContext"] = { link = "Normal" },
+		["NeogitDiffContextHighlight"] = { link = "Normal" },
+		["NeogitDiffHeader"] = { link = "Normal" },
+		["NeogitDiffContextCursor"] = { link = "Normal" },
 
-	vim.api.nvim_set_hl(0, "Changed", { fg = yellow:darken(15):hex() })
-	vim.api.nvim_set_hl(0, "Removed", { fg = red:saturate(5):hex() })
-	vim.api.nvim_set_hl(0, "Added", { fg = green:saturate(5):hex() })
-	vim.api.nvim_set_hl(0, "DiffChange", { link = "Comment" })
-	vim.api.nvim_set_hl(0, "DiffText", { fg = orange:hex(), bg = yellow:darken(60):hex() })
-	vim.api.nvim_set_hl(0, "DiffDelete", { fg = red:hex(), bg = red:fade(20):darken(50):hex() })
-	vim.api.nvim_set_hl(0, "DiffAdd", { bg = green:fade(44):darken(34):hex() })
+		["NeogitDiffDeleteCursor"] = { link = "DiffDelete" },
+		["NeogitDiffAddCursor"] = { link = "DiffAdd" },
 
-	vim.api.nvim_set_hl(0, "NeogitDiffDelete", { link = "DiffDelete" })
-	vim.api.nvim_set_hl(0, "NeogitDiffAdd", { link = "DiffAdd" })
-	vim.api.nvim_set_hl(0, "NeogitDiffDeleteHighlight", { link = "DiffDelete" })
-	vim.api.nvim_set_hl(0, "NeogitDiffAddHighlight", { link = "DiffAdd" })
+		["NeogitSectionHeader"] = { fg = purple:hex() },
+		["NeogitStatusHEAD"] = { fg = purple:hex() },
 
-	vim.api.nvim_set_hl(0, "NeogitDiffContext", { link = "Normal" })
-	vim.api.nvim_set_hl(0, "NeogitDiffContextHighlight", { link = "Normal" })
-	vim.api.nvim_set_hl(0, "NeogitDiffHeader", { link = "Normal" })
-	vim.api.nvim_set_hl(0, "NeogitDiffContextCursor", { link = "Normal" })
+		--  TODO: test
+		--  FIXME: test
+		--  BUG: test
+		--  INFO: test
+		--  HACK: test
+		--  PERF: test
+		["TodoBgTODO"] = { fg = steel:hex(), bg = green:hex(), bold = true },
+		["TodoFgTODO"] = { fg = green:hex() },
+		["TodoSignTODO"] = { fg = green:hex() },
 
-	vim.api.nvim_set_hl(0, "NeogitDiffDeleteCursor", { link = "DiffDelete" })
-	vim.api.nvim_set_hl(0, "NeogitDiffAddCursor", { link = "DiffAdd" })
+		["SnacksBackdrop"] = { bg = surface:hex() },
 
-	vim.api.nvim_set_hl(0, "NeogitSectionHeader", { fg = purple:hex() })
-	vim.api.nvim_set_hl(0, "NeogitStatusHEAD", { fg = purple:hex() })
+		["MiniStatuslineModeNormal"] = { fg = steel:darken(15):hex(), bg = primary:fade(15):hex(), bold = true },
+		["MiniStatuslineModeNormalSeparator"] = { fg = primary:fade(15):hex() },
+		["MiniStatuslineModeReplace"] = { fg = steel:darken(15):hex(), bg = red:hex(), bold = true },
+		["MiniStatuslineModeVisual"] = { fg = steel:darken(15):hex(), bg = purple:hex(), bold = true },
+		["MiniStatuslineModeInsert"] = { fg = steel:darken(15):hex(), bg = brown:hex(), bold = true },
+		["MiniStatuslineModeCommand"] = { fg = steel:darken(15):hex(), bg = orange:hex(), bold = true },
 
-	--  TODO: test
-	--  FIXME: test
-	--  BUG: test
-	--  INFO: test
-	--  HACK: test
-	--  PERF: test
-	vim.api.nvim_set_hl(0, "TodoBgTODO", { fg = steel:hex(), bg = green:hex(), bold = true })
-	vim.api.nvim_set_hl(0, "TodoFgTODO", { fg = green:hex() })
-	vim.api.nvim_set_hl(0, "TodoSignTODO", { fg = green:hex() })
+		["MiniCompletionInfoBorderOutdated"] = { link = "FloatBorder" },
 
-	vim.api.nvim_set_hl(0, "AIActionsHeader", { link = "@text" })
-	vim.api.nvim_set_hl(0, "AIActionsInActiveContext", { link = "@comment" })
-	vim.api.nvim_set_hl(0, "AIActionsActiveContext", { fg = red:hex() })
+		["MiniIndentscopeSymbol"] = { fg = steel:darken(5):hex() },
 
-	vim.api.nvim_set_hl(0, "SnacksBackdrop", { bg = surface:hex() })
+		-- blink
+		["BlinkCmpDocBorder"] = { fg = steel:hex() },
+		["BlinkCmpMenuBorder"] = { fg = steel:hex() },
+		["BlinkCmpKindFunction"] = { italic = true, fg = purple:hex() },
+		["BlinkCmpKindMethod"] = { link = "BlinkCmpKindFunction" },
+		["BlinkCmpKindProperty"] = { italic = true, fg = orange:hex() },
+		["BlinkCmpKindVariable"] = { italic = true, fg = brown:hex() },
+		["BlinkCmpKindField"] = { italic = true, fg = red:hex() },
+	}
 
-	vim.api.nvim_set_hl(
-		0,
-		"MiniStatuslineModeNormal",
-		{ fg = steel:darken(15):hex(), bg = primary:fade(15):hex(), bold = true }
-	)
-	vim.api.nvim_set_hl(0, "MiniStatuslineModeNormalSeparator", { fg = primary:fade(15):hex() })
-	vim.api.nvim_set_hl(0, "MiniStatuslineModeReplace", { fg = steel:darken(15):hex(), bg = red:hex(), bold = true })
-	vim.api.nvim_set_hl(0, "MiniStatuslineModeVisual", { fg = steel:darken(15):hex(), bg = purple:hex(), bold = true })
-	vim.api.nvim_set_hl(0, "MiniStatuslineModeInsert", { fg = steel:darken(15):hex(), bg = brown:hex(), bold = true })
-	vim.api.nvim_set_hl(0, "MiniStatuslineModeCommand", { fg = steel:darken(15):hex(), bg = orange:hex(), bold = true })
+	for hl, settings in pairs(config.overrides) do
+		if defaults[hl] then
+			defaults[hl] = vim.tbl_extend("force", defaults[hl], settings)
+		else
+			defaults[hl] = settings
+		end
+	end
 
-	vim.api.nvim_set_hl(0, "MiniCompletionInfoBorderOutdated", { link = "FloatBorder" })
-
-	vim.api.nvim_set_hl(0, "BlinkCmpKindFunction", { italic = true, fg = purple:hex() })
-	vim.api.nvim_set_hl(0, "BlinkCmpKindMethod", { link = "BlinkCmpKindFunction" })
-	vim.api.nvim_set_hl(0, "BlinkCmpKindProperty", { italic = true, fg = orange:hex() })
-	vim.api.nvim_set_hl(0, "BlinkCmpKindVariable", { italic = true, fg = brown:hex() })
-	vim.api.nvim_set_hl(0, "BlinkCmpKindField", { italic = true, fg = red:hex() })
+	for group, opts in pairs(defaults) do
+		vim.api.nvim_set_hl(0, group, opts)
+	end
 end
 
 return M
