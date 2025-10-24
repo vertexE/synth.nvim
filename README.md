@@ -37,6 +37,7 @@ cyan = "#00e5ff",
 For now, very little is supported outside of default hl groups.
 
 - blink.cmp
+- mini.statusline (modes)
 
 ## Gallery
 
