@@ -115,7 +115,7 @@ M.colorscheme = function()
 		["String"] = { fg = colors.steel:lighten(15):hex(), italic = true },
 		["Function"] = { fg = colors.primary:hex(), italic = true },
 		["Statement"] = { fg = colors.text_200:hex() },
-		["Keyword"] = { fg = colors.gray_500:hex(), bold = true },
+		["Keyword"] = { fg = colors.gray_500:hex(), italic = true },
 		["Comment"] = { italic = true, fg = colors.steel:hex() },
 		["PmenuSel"] = { bg = colors.surface:lighten(3):hex() },
 		["PmenuKind"] = { italic = true },
