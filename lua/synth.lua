@@ -207,7 +207,6 @@ M.colorscheme = function()
 			bg = colors.primary:fade(15):hex(),
 			bold = true,
 		},
-		["MiniStatuslineModeNormalSeparator"] = { fg = colors.primary:fade(15):hex() },
 		["MiniStatuslineModeReplace"] = { fg = colors.steel:darken(15):hex(), bg = colors.red:hex(), bold = true },
 		["MiniStatuslineModeVisual"] = { fg = colors.steel:darken(15):hex(), bg = colors.purple:hex(), bold = true },
 		["MiniStatuslineModeInsert"] = { fg = colors.steel:darken(15):hex(), bg = colors.brown:hex(), bold = true },
